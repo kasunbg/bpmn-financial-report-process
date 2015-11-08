@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <message id="newInvoice" name="newInvoiceMessage"></message>
+  <message id="payment" name="paymentMessage"></message>
+  <process id="invoiceProcess" isExecutable="true">
+    <startEvent id="messageStart">
+      <messageEventDefinition messageRef="newInvoice"></messageEventDefinition>
+    </startEvent>
+    <sequenceFlow id="sequenceFlow-cfca5001-f9a6-4ae0-a8dd-cd397878dcea" sourceRef="messageStart" targetRef="paymentEvt"></sequenceFlow>
+    <intermediateCatchEvent id="paymentEvt">
+      <messageEventDefinition messageRef="payment"></messageEventDefinition>
+    </intermediateCatchEvent>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow1" sourceRef="paymentEvt" targetRef="endevent1"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_invoiceProcess">
+    <bpmndi:BPMNPlane bpmnElement="invoiceProcess" id="BPMNPlane_invoiceProcess">
+      <bpmndi:BPMNShape bpmnElement="messageStart" id="BPMNShape_messageStart">
+        <omgdc:Bounds height="35.0" width="35.0" x="190.0" y="60.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="paymentEvt" id="BPMNShape_paymentEvt">
+        <omgdc:Bounds height="35.0" width="35.0" x="192.0" y="210.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="210.0" y="340.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="sequenceFlow-cfca5001-f9a6-4ae0-a8dd-cd397878dcea" id="BPMNEdge_sequenceFlow-cfca5001-f9a6-4ae0-a8dd-cd397878dcea">
+        <omgdi:waypoint x="207.0" y="95.0"></omgdi:waypoint>
+        <omgdi:waypoint x="209.0" y="210.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="209.0" y="245.0"></omgdi:waypoint>
+        <omgdi:waypoint x="227.0" y="340.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
